@@ -3,7 +3,7 @@ using System.Xml.Linq;
 
 namespace SarisDungeon
 {
-    class Program
+    public class Program
     {
         public static Player currentPlayer = new Player();
         public static bool mainloop = true;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SarisDungeon
 {
-    internal class Encounters
+    public class Encounters
     {
         static Random rand = new Random();
         //Encounter Generic
@@ -58,8 +58,8 @@ namespace SarisDungeon
             if (random)
             {
                 n = GetName();
-                p = rand.Next(1, 5);
-                h = rand.Next(1, 8);
+                p = Program.currentPlayer.GetPower();
+                h = Program.currentPlayer.GetHealth();
             }
             else
             {
@@ -118,7 +118,7 @@ namespace SarisDungeon
                     {
                         Console.WriteLine("You use your crazy ninja moves to evade the " + n + " and you successfully escape!");
                         Console.ReadKey();
-                        // Go to store
+                        Shop.LoadShop(Program.currentPlayer);
                     }
                 }
                 else if (input.ToLower() == "h" || input.ToLower() == "heal")
@@ -145,18 +145,18 @@ namespace SarisDungeon
                             damage = 0;
                         Console.WriteLine("You lose " + damage + " health");
                     }
-                    if (Program.currentPlayer.health <= 0)
-                    {
-                        //Death Code
-                        Console.WriteLine("As the " + n + " stands tall and comes down to strike. You have been slayn by the mighty " + n);
-                        Console.ReadKey();
-                        System.Environment.Exit(0);
-                    }
                     Console.ReadKey();
+                }
+                if (Program.currentPlayer.health <= 0)
+                {
+                    //Death Code
+                    Console.WriteLine("As the " + n + " stands tall and comes down to strike. You have been slayn by the mighty " + n);
+                    Console.ReadKey();
+                    System.Environment.Exit(0);
                 }
                 Console.ReadKey();
             }
-            int c = rand.Next(10, 50);
+            int c = Program.currentPlayer.GetCoins();
             Console.WriteLine("As you stand victorious over the " + n + ", its body dissolves into " + c + " gold coins!");
             Program.currentPlayer.coins += c;
             Console.ReadKey();
