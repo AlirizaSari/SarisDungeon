@@ -169,11 +169,13 @@ namespace SarisDungeon
                 case 0:
                     return "Skeleton";
                 case 1:
-                    return "zombie";
+                    return "Zombie";
                 case 2:
                     return "Human Cultist";
                 case 3:
                     return "Grave Robber";
+                case 4:
+                    return "Goblins";
             }
             return "Human Rogue";
         }
