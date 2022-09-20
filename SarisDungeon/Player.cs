@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace SarisDungeon
 {
-    [Serializable]
     public class Player
     {
         Random rand = new Random();
