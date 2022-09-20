@@ -12,7 +12,7 @@ namespace SarisDungeon
 
         public string name;
         public int id;
-        public int coins = 30000;
+        public int coins = 0;
         public int health = 10;
         public int damage = 1;
         public int armorValue = 0;
