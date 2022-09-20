@@ -60,7 +60,6 @@ namespace SarisDungeon
             BinaryFormatter binForm = new BinaryFormatter();
             string path = "saves/" + currentPlayer.id.ToString() + ".level";
             FileStream file = File.Open(path, FileMode.OpenOrCreate);
-            binForm.Serialize(file, currentPlayer);
             file.Close();
         }
 
@@ -76,9 +75,7 @@ namespace SarisDungeon
             foreach (string p in paths)
             {
                 FileStream file = File.Open(p, FileMode.Open);
-                Player player = (Player)binForm.Deserialize(file);
                 file.Close();
-                players.Add(player);
             }
 
             idCount = players.Count;
@@ -86,7 +83,7 @@ namespace SarisDungeon
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("Choose your player");
+                Console.WriteLine("Choose your player:" ,60);
 
                 foreach (Player p in players)
                 {
@@ -143,8 +140,7 @@ namespace SarisDungeon
                 }
             }
             
-
-
         }
+
     }
 }
