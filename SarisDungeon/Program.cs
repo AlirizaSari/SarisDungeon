@@ -1,7 +1,6 @@
 ﻿using System.Numerics;
 using System.Xml.Linq;
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 
 namespace SarisDungeon
 {

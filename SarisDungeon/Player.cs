@@ -75,7 +75,7 @@ namespace SarisDungeon
                 level++;
             }
             Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Red;
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
             Console.WriteLine("Congrats! You are now level " + level + "!!!");
             Console.ResetColor();
         }
