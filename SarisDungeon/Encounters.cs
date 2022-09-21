@@ -149,7 +149,7 @@ namespace SarisDungeon
                 }
                 if (Program.currentPlayer.health <= 0)
                 {
-                    //Death Code
+                    //Death
                     Console.WriteLine("As the " + n + " stands tall and comes down to strike. You have been slayn by the mighty " + n);
                     Console.ReadKey();
                     System.Environment.Exit(0);
@@ -157,14 +157,20 @@ namespace SarisDungeon
                 Console.ReadKey();
             }
             int c = Program.currentPlayer.GetCoins();
-            Console.WriteLine("As you stand victorious over the " + n + ", its body dissolves into " + c + " gold coins!");
+            int x = Program.currentPlayer.GetXP();
+            Console.WriteLine("As you stand victorious over the " + n + ", its body dissolves into " + c + " gold coins! You have gained " + x + " XP!");
             Program.currentPlayer.coins += c;
+            Program.currentPlayer.xp += x;
+
+            if (Program.currentPlayer.CanLevelUp())
+                Program.currentPlayer.LevelUp();
+
             Console.ReadKey();
         }
 
         public static string GetName()
         {
-            switch (rand.Next(0, 4))
+            switch (rand.Next(0, 5))
             {
                 case 0:
                     return "Skeleton";

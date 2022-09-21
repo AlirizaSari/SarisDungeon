@@ -65,5 +65,17 @@ namespace SarisDungeon
         {
             Environment.Exit(0);
         }
+
+        public static void ProgressBar(string fillerChar, string backgroundChar, decimal value, int size)
+        {
+            int dif = (int)(value * size);
+            for (int i = 0; i < size; i++)
+            {
+                if (i < dif)
+                    Console.Write(fillerChar);
+                else
+                    Console.Write(backgroundChar);
+            }
+        }
     }
 }
