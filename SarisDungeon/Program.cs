@@ -11,13 +11,8 @@ namespace SarisDungeon
         public static bool mainloop = true;
         static void Main(string[] args)
         {
-            if (!Directory.Exists("saves"))
-            {
-                Directory.CreateDirectory("saves");
-            }
-            currentPlayer = Load(out bool newP);
-            if (newP)
-                Encounters.FirstEncounter();
+            Start();
+            Encounters.FirstEncounter();
             while (mainloop)
             {
                 Encounters.RandomEncounter();
@@ -25,14 +20,13 @@ namespace SarisDungeon
 
         }
 
-        static Player NewStart(int i)
+        static Player Start()
         {
             Console.Clear();
             Player p = new Player();
             Console.WriteLine("Sari's Dungeon!");
             Console.WriteLine("Name:");
             p.name = Console.ReadLine();
-            p.id = i;
             Console.Clear();
             Console.WriteLine("You awake in a cold, stone, dark room. You feel dazed and are having trouble remembering");
             Console.WriteLine("anything about your past.");
@@ -51,96 +45,7 @@ namespace SarisDungeon
 
         public static void Quit()
         {
-            Save();
             Environment.Exit(0);
         }
-
-        public static void Save()
-        {
-            BinaryFormatter binForm = new BinaryFormatter();
-            string path = "saves/" + currentPlayer.id.ToString() + ".level";
-            FileStream file = File.Open(path, FileMode.OpenOrCreate);
-            file.Close();
-        }
-
-        public static Player Load(out bool newP)
-        {
-            newP = false;
-            Console.Clear();
-            string[] paths = Directory.GetFiles("saves");
-            List<Player> players = new List<Player>();
-            int idCount = 0;
-
-            BinaryFormatter binForm = new BinaryFormatter();
-            foreach (string p in paths)
-            {
-                FileStream file = File.Open(p, FileMode.Open);
-                file.Close();
-            }
-
-            idCount = players.Count;
-
-            while (true)
-            {
-                Console.Clear();
-                Console.WriteLine("Choose your player:" ,60);
-
-                foreach (Player p in players)
-                {
-                    Console.WriteLine(p.id + ": " + p.name);
-                }
-
-                Console.WriteLine("Please input player name or id  (id:# or playername). Additionally, 'create' will start a new save!");
-                string[] data = Console.ReadLine().Split(':');
-                try
-                {
-                    if (data[0] == "id")
-                    {
-                        if (int.TryParse(data[1], out int id))
-                        {
-                            foreach (Player player in players)
-                            {
-                                if (player.id == id)
-                                {
-                                    return player;
-                                }
-                            }
-                            Console.WriteLine("There is no player with that id!");
-                            Console.ReadKey();
-                        }
-                        else
-                        {
-                            Console.WriteLine("Your id needs to be a number! Press any key to continue!");
-                            Console.ReadKey();
-                        }
-                    }
-                    else if (data[0] == "create")
-                    {
-                        Player newPlayer = NewStart(idCount);
-                        newP = true;
-                        return newPlayer;
-                    }
-                    else
-                    {
-                        foreach (Player player in players)
-                        {
-                            if (player.name == data[0])
-                            {
-                                return player;
-                            }
-                        }
-                        Console.WriteLine("There is no player with that name!");
-                        Console.ReadKey();
-                    }
-                }
-                catch (IndexOutOfRangeException)
-                {
-                    Console.WriteLine("Your id needs to be a number! Press any key to continue!");
-                    Console.ReadKey();
-                }
-            }
-            
-        }
-
     }
 }
