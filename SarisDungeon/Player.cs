@@ -21,6 +21,9 @@ namespace SarisDungeon
 
         public int mods = 0;
 
+        public enum PlayerClass { Mage, Ranger, Warrior };
+        public PlayerClass currentClass = PlayerClass.Warrior;
+
         public int GetHealth()
         {
             int upper = (2 * mods + 5);

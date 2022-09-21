@@ -85,7 +85,7 @@ namespace SarisDungeon
                     int damage = p - Program.currentPlayer.armorValue;
                     if (damage < 0)
                         damage = 0;
-                    int attack = rand.Next(0, Program.currentPlayer.weaponValue) + rand.Next(1, 4);
+                    int attack = rand.Next(0, Program.currentPlayer.weaponValue) + rand.Next(1, 4) + ((Program.currentPlayer.currentClass == Player.PlayerClass.Warrior)? + 2:0);
                     Console.WriteLine("You lose " + damage + " health an deal " + attack + " damage");
                     Program.currentPlayer.health -= damage;
                     h -= attack;
@@ -105,7 +105,7 @@ namespace SarisDungeon
                 else if (input.ToLower() == "r" || input.ToLower() == "run")
                 {
                     //Run
-                    if (rand.Next(0, 2) == 0)
+                    if (Program.currentPlayer.currentClass != Player.PlayerClass.Ranger && rand.Next(0, 2) == 0)
                     {
                         Console.WriteLine("As you sprint aways from the " + n + ", its strike catches you in the back, sending you sprawling on to the ground.");
                         int damage = p - Program.currentPlayer.armorValue;
@@ -136,7 +136,7 @@ namespace SarisDungeon
                     else
                     {
                         Console.WriteLine("You rech into your bag and pull out a glowing, purple flask. You take a long drink.");
-                        int potionV = 5;
+                        int potionV = 5 + ((Program.currentPlayer.currentClass == Player.PlayerClass.Mage)? + 4:0);
                         Console.WriteLine("You gain " + potionV + " health");
                         Program.currentPlayer.health += potionV;
                         Console.WriteLine("As you were occupied, the " + n + " advanced and struck");
