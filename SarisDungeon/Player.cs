@@ -74,6 +74,7 @@ namespace SarisDungeon
                 xp -= GetLevelUpValue();
                 level++;
             }
+            Console.Clear();
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Congrats! You are now level " + level + "!!!");
             Console.ResetColor();

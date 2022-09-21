@@ -112,7 +112,7 @@ namespace SarisDungeon
                         if (damage < 0)
                             damage = 0;
                         Console.WriteLine("You Lose " + damage + " health and are unable to escape");
-                        Console.ReadKey();
+                        Program.currentPlayer.health -= damage;
                     }
                     else
                     {
@@ -139,13 +139,13 @@ namespace SarisDungeon
                         int potionV = 5 + ((Program.currentPlayer.currentClass == Player.PlayerClass.Mage)? + 4:0);
                         Console.WriteLine("You gain " + potionV + " health");
                         Program.currentPlayer.health += potionV;
+                        Program.currentPlayer.potion--;
                         Console.WriteLine("As you were occupied, the " + n + " advanced and struck");
                         int damage = (p / 2) - Program.currentPlayer.armorValue;
                         if (damage < 0)
                             damage = 0;
                         Console.WriteLine("You lose " + damage + " health");
                     }
-                    Console.ReadKey();
                 }
                 if (Program.currentPlayer.health <= 0)
                 {
