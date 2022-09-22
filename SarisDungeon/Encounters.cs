@@ -34,7 +34,15 @@ namespace SarisDungeon
             Console.WriteLine("The door slowly creaks open as you peer into the dark room. You see a tall man with a ");
             Console.WriteLine("long beard looking at a large tome.");
             Console.ReadKey();
-            Combat(false, "Dark Wizard", 4, 2);
+            if (Program.currentPlayer.currentClass == Player.PlayerClass.Mage)
+            {
+                Program.currentPlayer.weaponValue += 1;
+                Console.WriteLine("The Wizard sees that your a Mage. Because of that he doesn't want to fight but want to train you! You get + 1 weapon strenght");
+            }
+            else
+            {
+                Combat(false, "Dark Wizard", 4, 2);
+            }
         }
 
         //Encounter Tools
@@ -82,7 +90,7 @@ namespace SarisDungeon
                 {
                     //Attack
                     Console.WriteLine("With haste you surge forth, your sword flying in your hands! As you pass, the " + n + " strikes you as you pass.");
-                    int damage = p - Program.currentPlayer.armorValue;
+                    int damage = p - Program.currentPlayer.armorValue + ((Program.currentPlayer.currentClass == Player.PlayerClass.Undead)? - 3:0);
                     if (damage < 0)
                         damage = 0;
                     int attack = rand.Next(0, Program.currentPlayer.weaponValue) + rand.Next(1, 4) + ((Program.currentPlayer.currentClass == Player.PlayerClass.Warrior)? + 2:0);
@@ -94,7 +102,7 @@ namespace SarisDungeon
                 {
                     //Defend
                     Console.WriteLine("As the " + n + " prepares to strike, you ready your sword in a defensive stance.");
-                    int damage = (p / 4) - Program.currentPlayer.armorValue;
+                    int damage = (p / 4) - Program.currentPlayer.armorValue + ((Program.currentPlayer.currentClass == Player.PlayerClass.Undead)? - 3:0);
                     if (damage < 0)
                         damage = 0;
                     int attack = rand.Next(0, Program.currentPlayer.weaponValue / 2);
@@ -108,7 +116,7 @@ namespace SarisDungeon
                     if (Program.currentPlayer.currentClass != Player.PlayerClass.Ranger && rand.Next(0, 2) == 0)
                     {
                         Console.WriteLine("As you sprint aways from the " + n + ", its strike catches you in the back, sending you sprawling on to the ground.");
-                        int damage = p - Program.currentPlayer.armorValue;
+                        int damage = p - Program.currentPlayer.armorValue + ((Program.currentPlayer.currentClass == Player.PlayerClass.Undead)? - 3:0);
                         if (damage < 0)
                             damage = 0;
                         Console.WriteLine("You Lose " + damage + " health and are unable to escape");
@@ -127,7 +135,7 @@ namespace SarisDungeon
                     if (Program.currentPlayer.potion == 0)
                     {
                         Console.WriteLine("As you desperatly grasp for a potion in your bag, all that you feel are empty glass flasks");
-                        int damage = p - Program.currentPlayer.armorValue;
+                        int damage = p - Program.currentPlayer.armorValue + ((Program.currentPlayer.currentClass == Player.PlayerClass.Undead)? - 3:0);
                         if (damage < 0)
                             damage = 0;
                         Console.WriteLine("The " + n + " strikes you with a mighty blow an you " + damage + " health!");
@@ -141,7 +149,7 @@ namespace SarisDungeon
                         Program.currentPlayer.health += potionV;
                         Program.currentPlayer.potion--;
                         Console.WriteLine("As you were occupied, the " + n + " advanced and struck");
-                        int damage = (p / 2) - Program.currentPlayer.armorValue;
+                        int damage = (p / 2) - Program.currentPlayer.armorValue + ((Program.currentPlayer.currentClass == Player.PlayerClass.Undead)? - 3:0);
                         if (damage < 0)
                             damage = 0;
                         Console.WriteLine("You lose " + damage + " health");
