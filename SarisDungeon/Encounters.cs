@@ -19,7 +19,6 @@ namespace SarisDungeon
             Console.WriteLine("He turns...");
             Console.ReadKey();
             Combat(false, "Human Rouge", 1, 4);
-
         }
         public static void BasicFightEncounter()
         {
