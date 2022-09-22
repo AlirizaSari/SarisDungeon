@@ -38,9 +38,11 @@ namespace SarisDungeon
             {
                 Program.currentPlayer.weaponValue += 1;
                 Console.WriteLine("The Wizard sees that your a Mage. Because of that he doesn't want to fight but want to train you! You get + 1 weapon strenght");
+                RandomEncounter();
             }
             else
             {
+                Console.WriteLine("He attacks you!");
                 Combat(false, "Dark Wizard", 4, 2);
             }
         }
