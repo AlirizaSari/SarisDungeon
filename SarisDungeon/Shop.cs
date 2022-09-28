@@ -40,9 +40,10 @@ namespace SarisDungeon
                 Console.WriteLine("(Q)uit");
                 Console.WriteLine();
                 Console.WriteLine();
-                Console.WriteLine(          "Stats"         );
+                Console.WriteLine("          Stats         ");
                 Console.WriteLine("========================");
                 Console.WriteLine("Current Health: " + p.health);
+                Console.WriteLine("Class: " + p.currentClass);
                 Console.WriteLine("Coins: " + p.coins);
                 Console.WriteLine("Weapon Strength: " + p.weaponValue);
                 Console.WriteLine("Weapon Toughness: " + p.armorValue);

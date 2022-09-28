@@ -33,13 +33,21 @@ namespace SarisDungeon
                 flag = true;
                 string input = Console.ReadLine().ToLower();
                 if (input == "mage")
+                {
                     p.currentClass = Player.PlayerClass.Mage;
+                }
                 else if (input == "ranger")
+                {
                     p.currentClass = Player.PlayerClass.Ranger;
+                }
                 else if (input == "warrior")
+                {
                     p.currentClass = Player.PlayerClass.Warrior;
+                }
                 else if (input == "undead")
+                {
                     p.currentClass = Player.PlayerClass.Undead;
+                }
                 else
                 {
                     Console.WriteLine("Please choose a existing class!");
