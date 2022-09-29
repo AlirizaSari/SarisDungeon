@@ -9,10 +9,10 @@ namespace SarisDungeon
     public class Encounters
     {
         static Random rand = new Random();
-        //Encounter Generic
+        
 
 
-        //Encounters
+        
         public static void FirstEncounter()
         {
             Console.WriteLine("You throw open the door and grab a rusty metal sword whilecharging toward your captor");
@@ -45,7 +45,7 @@ namespace SarisDungeon
             }
         }
 
-        //Encounter Tools
+        
         public static void RandomEncounter()
         {
             switch (rand.Next(0, 2))
